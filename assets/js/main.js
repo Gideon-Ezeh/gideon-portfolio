@@ -77,7 +77,8 @@ if (contactForm) {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(data).toString(),
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) throw new Error(`Form submission failed: ${response.status}`);
         status.textContent = "Thanks! Your message has been sent — I'll be in touch soon.";
         status.classList.remove("error");
         status.classList.add("show", "success");

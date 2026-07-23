@@ -2,6 +2,14 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-07-24 — Fixed contact form false "success" message
+
+**Why:** After going live on Netlify, the contact form showed "Thanks! Your message has been sent" but no submission actually reached Netlify's Forms dashboard. Debugging showed the form's POST to `/` was returning a 404 — Netlify's form-detection bot hadn't picked up the `contact` form (its per-site "Form detection" setting was off despite the account-level Forms feature being enabled). Fixed via the Netlify project API (`update-forms` → enabled) and confirmed the HTML markup itself was already correct (`data-netlify="true"`, matching `form-name` hidden field).
+
+**Real bug fixed regardless:** `assets/js/main.js`'s submit handler only checked that the `fetch()` call completed, not whether the response was actually a success (`response.ok`) — so it showed the success message even on a 404/500. Now throws (triggering the error message) on any non-2xx response. This matters any time the form endpoint misbehaves, not just for this one incident.
+
+**How to apply going forward:** if the form ever silently "succeeds" locally but nothing shows up in Netlify's Forms dashboard, check the site's Form detection setting and confirm a fresh deploy has run since the form's HTML last changed — detection re-scans on every deploy.
+
 ## 2026-07-23 (later) — Merged in real content, restyled with Auros design system, prepped for Git
 
 **Why:** The first build used entirely placeholder content. The user has a real, already-live portfolio (`GideonWebsite`, an HTML5 UP "Editorial" template) with genuine bio, projects, and contact info, plus a style reference (`DESIGN.md`, an "Auros" dark-teal fintech style) they wanted applied instead of the original teal/near-black scheme. They also want the site on GitHub, deploying to Netlify via CI rather than drag-and-drop.
