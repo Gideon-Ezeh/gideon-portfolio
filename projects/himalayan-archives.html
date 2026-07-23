@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Himalayan Archives — Case Study | Gideon Ezeh</title>
+<meta name="description" content="A century of Himalayan mountaineering records (1905-2024) turned into expedition and summit trend insights using SQL Server and Power BI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="../index.html" class="logo">Gideon Ezeh</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="../index.html#contact" class="btn btn-primary nav-cta">Contact Me</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Himalayan Archives</p>
+  </div>
+
+  <header class="case-header">
+    <div class="container">
+      <span class="tag accent-tag">SQL Server</span><span class="tag accent-tag">Power BI</span><span class="tag">Excel</span>
+      <h1>The Himalayan Archives</h1>
+      <p>Turning Elizabeth Hawley's half-century of mountaineering documentation into a data story about a century of Himalayan expeditions, 1905–2024.</p>
+      <div class="case-meta">
+        <div><span>Dataset</span><strong>11,000+ expedition reports (Mavin Analytics)</strong></div>
+        <div><span>Scale</span><strong>89,000+ mountaineers, 480 peaks</strong></div>
+        <div><span>Tools</span><strong>SQL Server, Excel, Power BI</strong></div>
+        <div><span>Role</span><strong>Data Analyst</strong></div>
+      </div>
+      <div class="case-image"><img src="../assets/img/himalayan-archives.jpg" alt="Himalayan Archives data visualization"></div>
+    </div>
+  </header>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>The Objective</h2>
+      <p>The Himalayan Database, built on Elizabeth Hawley's decades of expedition documentation, holds over 11,000 expedition reports covering more than 89,000 mountaineers across 480 peaks. The goal was to turn that raw archive into clear, explorable trends about who has climbed, what's been climbed, and how the sport has changed since 1905.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Approach</h2>
+      <p>I cleaned the data in SQL Server — standardizing dates, filtering invalid records, and consolidating inconsistent nationality data — then structured it into a star schema with fact and dimension tables before building the visualizations in Power BI.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Key Findings</h2>
+      <div class="results-grid">
+        <div class="result-stat"><div class="num">77%</div><div class="label">of 480 documented peaks climbed</div></div>
+        <div class="result-stat"><div class="num">12,874</div><div class="label">unique Everest summiters (to 2024)</div></div>
+        <div class="result-stat"><div class="num">14</div><div class="label">summits by Anatoli Boukreev — most of any climber</div></div>
+      </div>
+      <p style="margin-top:28px;">About 23% of the 480 documented peaks remain unclimbed — potential first-ascent opportunities. Expeditions surged from the 1980s onward as equipment improved and commercial guiding took off, with sharp dips in 2015 (the earthquake-triggered avalanche) and 2020 (the pandemic). Everest's 327 recorded deaths alongside its 12,874 successful summits underline both the mountain's draw and its risk.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="case-cta">
+      <h2>Want the full write-up?</h2>
+      <p>The complete analysis, visuals, and methodology are published on Medium.</p>
+      <div class="case-cta-actions">
+        <a href="https://medium.com/@ezehgideon92/the-himalayan-archives-a-century-of-ambition-on-the-roof-of-the-world-d2fadb8be4dc" class="btn btn-primary" target="_blank" rel="noopener">Read on Medium</a>
+        <a href="../index.html#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 Gideon Ezeh. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://x.com/gideon_mighty" target="_blank" rel="noopener" aria-label="Twitter / X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-6.6L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.1L18.9 2Zm-1.2 18h1.7L6.4 4h-1.8l13.1 16Z"/></svg>
+      </a>
+      <a href="https://web.facebook.com/KOLOURED" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@GideonEzeh" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2c-.3-.9-1-1.6-1.9-1.9C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.7.4c-.9.3-1.6 1-1.9 1.9C1 8.5 1 12 1 12s0 3.5.4 5.2c.3.9 1 1.6 1.9 1.9 1.8.4 8.7.4 8.7.4s6.9 0 8.7-.4c.9-.3 1.6-1 1.9-1.9.4-1.7.4-5.2.4-5.2Zm-13.5 3.3V8.7l6 3.3-6 3.3Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/gideon-ezeh" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.4H3.3V21H6.9V8.4ZM5.1 3a2.1 2.1 0 1 0 0 4.2A2.1 2.1 0 0 0 5.1 3ZM21 21v-7c0-3.4-1.8-5-4.3-5-2 0-2.9 1.1-3.3 1.9V8.4H10v12.6h3.4v-6.6c0-1.7 1-2.5 2.2-2.5 1.1 0 1.9.7 1.9 2.5V21H21Z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
