@@ -2,6 +2,17 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-07-24 (later) — Added Research and Trainings pages, project category filter
+
+**Why:** Gideon does research projects and facilitates data trainings alongside client analytics work, and wanted those surfaced as their own nav destinations, plus a way to browse projects by industry as the project list grows.
+
+**Added:**
+- `research.html` and `trainings.html` — new top-level pages (not anchors), linked from the nav on every page (`index.html` and all `projects/*.html`). Content is built only from facts already established elsewhere on the site (the "open to research/tutoring" line from Contact, and the real methodology evidenced by the 3 existing case studies) — no invented past research projects or training curricula/pricing, since none were provided. **Follow-up:** expand these with real specifics (past research topics, training formats/pricing, testimonials) when available.
+- Research page reuses the 3 existing case studies, framed accurately as self-directed research projects (which they are).
+- Project category filter on the home `#projects` section: pill-button bar with "All" plus 15 categories (Business, Healthcare, Travel, Retail, Human Resources, Finance, Sports, Transportation, Geospatial, Entertainment, Food & Beverages, Survey, Hospitality, Environment, Time series). Implemented via `data-categories` attributes on each `.project-card` and filter logic in `main.js`; categories with zero current matches show a friendly empty state instead of a blank grid. **Assumed tags** (confirm/adjust): Coffee Taste Test → Food & Beverages, Survey, Business; UK Train Rides → Transportation, Business; Himalayan Archives → Travel, Sports, Time series.
+
+**How to apply going forward:** every new project card added to `#projects` needs a `data-categories` attribute (space-separated slugs, e.g. `data-categories="finance business"`) or it won't appear under any filter except "All".
+
 ## 2026-07-24 — Fixed contact form false "success" message
 
 **Why:** After going live on Netlify, the contact form showed "Thanks! Your message has been sent" but no submission actually reached Netlify's Forms dashboard. Debugging showed the form's POST to `/` was returning a 404 — Netlify's form-detection bot hadn't picked up the `contact` form (its per-site "Form detection" setting was off despite the account-level Forms feature being enabled). Fixed via the Netlify project API (`update-forms` → enabled) and confirmed the HTML markup itself was already correct (`data-netlify="true"`, matching `form-name` hidden field).

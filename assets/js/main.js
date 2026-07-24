@@ -54,6 +54,34 @@ if (revealEls.length) {
   revealEls.forEach((el) => revealObserver.observe(el));
 }
 
+// Project category filter
+const filterBar = document.querySelector(".filter-bar");
+if (filterBar) {
+  const filterButtons = filterBar.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+  const emptyState = document.querySelector(".project-empty");
+
+  filterBar.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+
+    filterButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+    let visibleCount = 0;
+
+    projectCards.forEach((card) => {
+      const categories = (card.dataset.categories || "").split(" ");
+      const matches = filter === "all" || categories.includes(filter);
+      card.classList.toggle("is-hidden", !matches);
+      if (matches) visibleCount++;
+    });
+
+    if (emptyState) emptyState.classList.toggle("show", visibleCount === 0);
+  });
+}
+
 // Contact form: Netlify handles the actual submission (data-netlify="true").
 // This just gives the user feedback without a page reload.
 const contactForm = document.querySelector("#contact-form");
