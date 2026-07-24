@@ -2,6 +2,17 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-07-24 (latest) — Replaced Research page project grid with the C19RM flagship project
+
+**Why:** Gideon shared a real, substantial credential — Research Data Manager & HEPR Pillar Co-Lead on the Nigeria C19RM Impact Evaluation (Global Fund / Jhpiego Nigeria / NACA / NTBLCP), sourced from his own LinkedIn post — and asked for the 3-project grid on `research.html` to be replaced with it, plus 4 real event photos he attached.
+
+**Changed on `research.html`:** removed the grid linking to the 3 home-page case studies; replaced with a full featured write-up of the C19RM evaluation — meta grid (funder/implementer/partners/role/duration), "The Mandate" and "My Role & Approach" narrative sections (built from his LinkedIn post, paraphrased/professionalized, not fabricated), a pull-quote, a results stat row (8 weeks protocol-to-briefing, 6 geopolitical zones, 11 domain datasets — all real figures from his account), and a 4-photo gallery. Header tag pills gained "Monitoring & Evaluation" and "Kobo Toolbox" since this project evidences those skills.
+
+**Assets added:** `assets/img/c19rm-portrait-full.jpg`, `c19rm-portrait-closeup.jpg`, `c19rm-group-1.jpg`, `c19rm-group-2.jpg` — copied from the user's Downloads folder (originals were pasted into chat).
+
+**New CSS:** `.photo-gallery` (responsive image grid, 4-col desktop / 2-col mobile) and `.pull-quote` (gradient left-border blockquote) added to `style.css`, reusable for future case studies.
+
+
 ## 2026-07-24 (later) — Added Research and Trainings pages, project category filter
 
 **Why:** Gideon does research projects and facilitates data trainings alongside client analytics work, and wanted those surfaced as their own nav destinations, plus a way to browse projects by industry as the project list grows.
