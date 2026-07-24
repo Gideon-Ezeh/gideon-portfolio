@@ -2,6 +2,16 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-07-24 (latest) — Added FMBEP Power BI workshop to Trainings page
+
+**Why:** Gideon shared a second real credential — a hands-on Power BI workshop he co-facilitated for Nigeria's Federal Ministry of Budget and Economic Planning (FMBEP), in collaboration with UNFPA — sourced from his own LinkedIn post, with 4 event photos.
+
+**Changed on `trainings.html`:** added a "Featured Training" section (same pattern as the C19RM feature on `research.html`) between "What I teach" and "Who it's for" — meta grid (client/partner/co-facilitator/format/focus), a narrative built from his LinkedIn post (paraphrased, not verbatim), a pull-quote ("Aggregate data lies..."), and a 4-photo gallery. Header tags gained "DAX" and "Facilitation"; lead paragraph and meta description now reference this engagement directly.
+
+**Assets added:** `assets/img/fmbep-dashboard-screen.jpg`, `fmbep-group-session.jpg`, `fmbep-facilitating.jpg`, `fmbep-workshop-banner.jpg`.
+
+**Note:** unlike the C19RM feature, this one has no numeric results-grid — no hard stats were given (e.g. participant count), so the proof here is the pull-quote and the participant anecdote instead of invented numbers.
+
 ## 2026-07-24 (latest) — Replaced Research page project grid with the C19RM flagship project
 
 **Why:** Gideon shared a real, substantial credential — Research Data Manager & HEPR Pillar Co-Lead on the Nigeria C19RM Impact Evaluation (Global Fund / Jhpiego Nigeria / NACA / NTBLCP), sourced from his own LinkedIn post — and asked for the 3-project grid on `research.html` to be replaced with it, plus 4 real event photos he attached.
