@@ -2,6 +2,16 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-08-17 (latest) — Real resume hosted directly on the site
+
+**Why:** the Resume/CV button linked to a Google Drive *folder*, so clicking "Download" dropped visitors on a folder listing instead of the CV itself (flagged as a follow-up in an earlier session). Gideon sent his real CV (`.docx`) and asked for it to be hosted directly on the site instead.
+
+**What changed:** converted `Gideon_Ezeh_CV.docx` to PDF via Word/`docx2pdf` (Word is installed locally; LibreOffice/pandoc were not available) and saved it as `assets/resume.pdf`, replacing the earlier placeholder. Updated the Resume card in `index.html` (`#about`) to link directly to `assets/resume.pdf` with a `download` attribute, and changed the caption from "Google Drive" to "PDF — updated August 2026". Removed the now-resolved Drive-folder item from README's "Known follow-ups".
+
+**Note:** the real CV lists "over 6 years of experience" (framed around MEL/Research Data Manager work since 2018), which doesn't exactly match the "4+ years" hero stat set earlier per Gideon's explicit instruction — left as-is since that was a direct instruction, not an oversight; flagged to him for awareness rather than changed unilaterally.
+
+**How to update the resume in future:** replace `assets/resume.pdf` with the new file (same filename), and update the "PDF — updated [month year]" caption in `index.html`.
+
 ## 2026-08-17 (latest) — Newest-content-on-top convention; reordered project grid
 
 **Why:** Gideon wants clients to see the most recent work first without scrolling — new projects/research/trainings should always be added at the top of their list, not the bottom. This applies to every future addition, not just this one.

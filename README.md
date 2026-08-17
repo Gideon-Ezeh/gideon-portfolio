@@ -26,6 +26,8 @@ Everything is plain HTML — open any `.html` file in a text editor. Styling liv
 
 To add a new project: copy one of the files in `projects/` as a starting template, update the meta info and sections, add image(s) to `assets/img/`, and add a matching project card to the `#projects` grid in `index.html` — **at the top of the grid**, not the bottom (see Conventions below).
 
+To update the resume: replace `assets/resume.pdf` with the new file, keeping the same filename so the download button in `#about` keeps working. Update the "PDF — updated [month year]" caption next to it in `index.html`.
+
 ## Conventions
 
 - **Newest goes on top.** Any time a new project, research write-up, or training is added, it goes at the *top* of its list/grid (`#projects` in `index.html`, the featured section in `research.html`, the featured section in `trainings.html`) — not appended at the bottom. Clients should see the most recent work first without scrolling.
@@ -33,7 +35,6 @@ To add a new project: copy one of the files in `projects/` as a starting templat
 ## Known follow-ups
 
 - **`assets/img/me.jpg` is ~1.7MB** — worth compressing (e.g. via [squoosh.app](https://squoosh.app)) before final deploy so the hero loads fast on mobile.
-- **Resume link** currently points to a Google Drive *folder* (`#about` → Resume card), not a single PDF file — consider sharing a direct file link instead so visitors land on the resume itself, not a folder listing.
 - **No testimonials section** — intentionally left out since there's no real client feedback yet. Add one back in once you have a few real quotes; don't fabricate placeholder ones on a live personal site.
 
 ## Contact form
