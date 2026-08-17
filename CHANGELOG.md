@@ -2,6 +2,18 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-08-17 (latest) — Added Zephyr Bank case study as 4th project; updated experience & phone
+
+**Why:** Gideon published a new Medium article ("The Numbers Looked Fine. That Was The Problem") about a Power BI/Excel transaction-health dashboard he built for a fictional UK neobank (Zephyr Bank) as a data analytics challenge, and wanted it added as a 4th portfolio project tagged Finance + Business. He also asked for years-of-experience and phone number updates.
+
+**Added `projects/zephyr-bank-dashboard.html`:** full case study built from the Medium article's actual text (paraphrased where natural, key stats kept exact) — Brief, a 3-stat "what the headline numbers hide" grid, then one section per dashboard page (Executive Summary, Temporal Trends, Customer & Segment, Transaction & Merchant, Fee Revenue & Leakage) each paired with its real screenshot, plus the "What I'd action from this" list from the original post. CTA links to the live Medium article.
+
+**Images:** downloaded all 6 images directly from the Medium post's `miro.medium.com` CDN (`zephyr-cover.png` + 5 dashboard-page screenshots) via `curl` at `resize:fit:1400` for quality, saved to `assets/img/`.
+
+**Home page (`index.html`):** added the 4th project card (`data-categories="finance business"`) to the `#projects` grid; updated hero stats "Years experience" 3+ → 4+ and "Featured projects" 3 → 4; updated hero-lead copy 3+ → 4+ years; updated Contact section phone number to +234 810 986 4035 (reformatted from the local `08109864035` the user gave, to match the site's existing `+234 xxx xxx xxxx` convention — same digits, international format).
+
+**Note on the browser preview tool:** local `file://` verification for nested pages in this session sometimes renders as a `data:` URI snapshot instead of a live file load, which breaks relative-path checks (images/CSS) done via `fetch()` in that snapshot — this is a quirk of the preview tool itself, not a site bug. When it happens, verify by reading the decoded `document.location.href` (still contains full accurate HTML) or just check the live Netlify deploy instead.
+
 ## 2026-07-24 (latest) — Added FMBEP Power BI workshop to Trainings page
 
 **Why:** Gideon shared a second real credential — a hands-on Power BI workshop he co-facilitated for Nigeria's Federal Ministry of Budget and Economic Planning (FMBEP), in collaboration with UNFPA — sourced from his own LinkedIn post, with 4 event photos.

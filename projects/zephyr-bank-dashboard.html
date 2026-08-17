@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Numbers Looked Fine. That Was The Problem — Case Study | Gideon Ezeh</title>
+<meta name="description" content="A five-page Power BI transaction health dashboard for Zephyr Bank, a UK digital-only neobank — surfacing fraud, revenue-leakage, and merchant-risk issues a single KPI would have hidden.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="../index.html" class="logo">Gideon Ezeh</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../research.html">Research</a></li>
+      <li><a href="../trainings.html">Trainings</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="../index.html#contact" class="btn btn-primary nav-cta">Contact Me</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / Zephyr Bank Transaction Health Monitor</p>
+  </div>
+
+  <header class="case-header">
+    <div class="container">
+      <span class="tag accent-tag">Power BI</span><span class="tag accent-tag">Excel</span><span class="tag">Finance</span>
+      <h1>The Numbers Looked Fine. That Was The Problem.</h1>
+      <p>A five-page transaction health dashboard for Zephyr Bank, a UK digital-only neobank — walking through it page by page surfaced four risks a single headline KPI would have hidden.</p>
+      <div class="case-meta">
+        <div><span>Dataset</span><strong>Zephyr Bank H1 2026 Transaction Data</strong></div>
+        <div><span>Format</span><strong>Data analytics challenge</strong></div>
+        <div><span>Tools</span><strong>Excel, Power BI</strong></div>
+        <div><span>Role</span><strong>Data Analyst</strong></div>
+      </div>
+      <div class="case-image"><img src="../assets/img/zephyr-cover.png" alt="Zephyr Bank Digital Transaction Health Monitor dashboard overview"></div>
+    </div>
+  </header>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>The Brief</h2>
+      <p>I took on a data challenge to build a full H1 2026 transaction health dashboard for Zephyr Bank, and structured it the way I'd want a client to actually use it: five pages, each answering one stakeholder's question, with every headline metric carrying a month-over-month trend indicator so nothing gets read in isolation.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>What the headline numbers hide</h2>
+      <div class="results-grid">
+        <div class="result-stat"><div class="num">62%</div><div class="label">of total transaction value comes from London alone</div></div>
+        <div class="result-stat"><div class="num">4</div><div class="label">accounts responsible for the platform's entire fraud picture</div></div>
+        <div class="result-stat"><div class="num">66.7%</div><div class="label">of failed transactions have no reason logged at all</div></div>
+      </div>
+      <p style="margin-top:28px;">None of that was visible from the five top-line summary cards — it only surfaced once the data was broken apart page by page.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Executive Summary: a recovery that isn't as clean as it looks</h2>
+      <p>The top-line cards read reasonably: 2,000 transactions, £1.90M in value, 20.0% fraud, 35.0% declined, £750 in fees — each with a trend arrow from April to May. Total transaction value is up +48.4% month-over-month, which looks like a strong rebound. It is one — but two of those five headline cards are red, not green: fraud rate moved +9.8 percentage points and decline rate +2.6 points in the same month the business "recovered." Growth and risk rose together, a detail a single-number summary would never surface.</p>
+      <p>The segment breakdown plants the first flag too: Premium customers account for £1.2M of the £1.9M in total transaction value — well over half the book, on just one of four tiers.</p>
+      <div class="case-image"><img src="../assets/img/zephyr-executive-summary.jpg" alt="Zephyr Bank Executive Summary dashboard page"></div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Temporal Trends: the fraud pattern has a day of the week</h2>
+      <p>Breaking fraud rate out by day of week, not just by month, turned up something a monthly view alone would never show: Monday sits at 25.2% — nearly double Wednesday's 14.1%, the lowest day in the dataset. Every other day sits in a tighter 15–22% band. That's not statistical noise — it's a pattern narrow enough to point Risk toward a specific review window rather than a blanket policy change.</p>
+      <div class="case-image"><img src="../assets/img/zephyr-temporal-trends.jpg" alt="Zephyr Bank Temporal Trends dashboard page"></div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Customer & Segment Analysis: one region, one tier, four accounts</h2>
+      <p>London alone accounts for £1.17M of total transaction value — roughly 62% of the entire book — with every other region trailing far behind (South East next at £0.56M).</p>
+      <p>Segment-level fraud rate tells a sharper story than the aggregate 20% ever could: Premium customers show a 40.0% fraud rate, Business sits at 25.0%, Standard at 16.7%, and Starter-tier customers show 0.0%. The tier positioned as the bank's most trusted, highest-value relationship is — in this window — its highest-risk one.</p>
+      <p>The customer table makes it concrete: Rajan Mehta carries £1,124,545 in transaction value, and every pound of it is flagged as fraud exposure — visually unmissable in the table's red data bar, alongside three other accounts (Daniel Okafor, Charlotte Lewis, Mohammed Al-Hassan) showing the identical pattern. Everyone else on the list shows zero fraud exposure. Four accounts, not a segment-wide problem, are producing the entire fraud picture.</p>
+      <div class="case-image"><img src="../assets/img/zephyr-customer-segment.jpg" alt="Zephyr Bank Customer & Segment Analysis dashboard page"></div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Transaction & Merchant Pattern: the safest-looking transactions fail the most</h2>
+      <p>The intuitive assumption is that failures cluster around risky transaction types — international transfers, crypto. The data says otherwise: Card Refund, Loan Repayment, and Standing Order — three of the most routine, automated transaction types on the platform — each show a 75% failure rate, the highest of any type in the dataset. International transfers, by comparison, fail at 62.5%.</p>
+      <p>Sitting right next to that chart is the reason nobody can act on it fast: 66.7% of every failed transaction has no failure reason logged at all — "Not Recorded" towers over the three actual named reasons (Insufficient Funds, Card Limit Exceeded, Fraud Suspected) combined.</p>
+      <p>The risk-tagging system built to flag dangerous merchant categories doesn't track reality either: Fuel, rated a "Low" risk category, has a 31.3% fraud rate — the highest of any category in the dataset. Crypto Exchange, rated "High" risk, sits at just 9.6%.</p>
+      <div class="case-image"><img src="../assets/img/zephyr-transaction-merchant.jpg" alt="Zephyr Bank Transaction & Merchant Pattern dashboard page"></div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>Fee Revenue & Leakage: a near-zero number hiding two real ones</h2>
+      <p>Total fee revenue (£750.2) against expected fee revenue (£750.0) nets out to almost nothing — a leakage figure so small it would normally get skipped in a review. It's a coincidence. Breaking it apart by transaction type shows £524.4 in fees charged on transaction types that are supposed to be free, sitting right next to £524.2 in fees under-collected on the types that should be charging — two real, opposite-direction problems that happen to cancel out in the total.</p>
+      <p>The starkest single line: international transfer fees are being collected at just 20.1% of the expected rate.</p>
+      <div class="case-image"><img src="../assets/img/zephyr-fee-leakage.jpg" alt="Zephyr Bank Fee Revenue & Leakage dashboard page"></div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>What I'd action from this</h2>
+      <ul>
+        <li>Investigate the four accounts on the Customer Segment page directly — not the Premium tier as a whole, four specific relationships, one of which is £1.12M of concentrated exposure.</li>
+        <li>Split the fee-leakage fix in two: enforce international/ATM/crypto fees that are under-collected, and separately audit why routine "free" transaction types are being charged — don't let the near-zero net number hide either problem again.</li>
+        <li>Rebuild merchant risk-tagging from the actual fraud data, and route back-office transaction types (Card Refund, Loan Repayment, Standing Order) through the same failure-reason logging discipline as customer-initiated ones — right now two-thirds of failures across the platform have no diagnosable cause.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="case-cta">
+      <h2>Want the full write-up?</h2>
+      <p>The complete analysis, visuals, and methodology are published on Medium.</p>
+      <div class="case-cta-actions">
+        <a href="https://medium.com/@ezehgideon92/the-numbers-looked-fine-that-was-the-problem-953b36fd2d8b" class="btn btn-primary" target="_blank" rel="noopener">Read on Medium</a>
+        <a href="../index.html#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 Gideon Ezeh. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://x.com/gideon_mighty" target="_blank" rel="noopener" aria-label="Twitter / X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-6.6L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.1L18.9 2Zm-1.2 18h1.7L6.4 4h-1.8l13.1 16Z"/></svg>
+      </a>
+      <a href="https://web.facebook.com/KOLOURED" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@GideonEzeh" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2c-.3-.9-1-1.6-1.9-1.9C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.7.4c-.9.3-1.6 1-1.9 1.9C1 8.5 1 12 1 12s0 3.5.4 5.2c.3.9 1 1.6 1.9 1.9 1.8.4 8.7.4 8.7.4s6.9 0 8.7-.4c.9-.3 1.6-1 1.9-1.9.4-1.7.4-5.2.4-5.2Zm-13.5 3.3V8.7l6 3.3-6 3.3Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/gideon-ezeh" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.4H3.3V21H6.9V8.4ZM5.1 3a2.1 2.1 0 1 0 0 4.2A2.1 2.1 0 0 0 5.1 3ZM21 21v-7c0-3.4-1.8-5-4.3-5-2 0-2.9 1.1-3.3 1.9V8.4H10v12.6h3.4v-6.6c0-1.7 1-2.5 2.2-2.5 1.1 0 1.9.7 1.9 2.5V21H21Z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
