@@ -2,6 +2,14 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-08-17 (latest) — Newest-content-on-top convention; reordered project grid
+
+**Why:** Gideon wants clients to see the most recent work first without scrolling — new projects/research/trainings should always be added at the top of their list, not the bottom. This applies to every future addition, not just this one.
+
+**Changed:** moved the Zephyr Bank project card to the top of the `#projects` grid in `index.html` (was last of 4, now first). Documented the convention in `README.md` under a new "Conventions" section, and saved it as a persistent memory (`feedback_newest-content-on-top.md`) so future sessions apply it automatically without being re-told.
+
+**How to apply going forward:** when adding a new project card to `index.html`, a new featured write-up to `research.html`, or a new featured training to `trainings.html`, insert it as the *first* child in its container.
+
 ## 2026-08-17 (latest) — Added Zephyr Bank case study as 4th project; updated experience & phone
 
 **Why:** Gideon published a new Medium article ("The Numbers Looked Fine. That Was The Problem") about a Power BI/Excel transaction-health dashboard he built for a fictional UK neobank (Zephyr Bank) as a data analytics challenge, and wanted it added as a 4th portfolio project tagged Finance + Business. He also asked for years-of-experience and phone number updates.

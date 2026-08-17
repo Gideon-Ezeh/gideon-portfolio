@@ -24,7 +24,11 @@ The visual style follows the Auros style reference (`DESIGN.md` in Downloads): a
 
 Everything is plain HTML — open any `.html` file in a text editor. Styling lives in one shared file (`assets/css/style.css`).
 
-To add a 4th project: copy one of the files in `projects/` as a starting template, update the meta info and the three sections (Objective / Approach / Key Findings), add a thumbnail to `assets/img/`, and add a matching project card to the `#projects` grid in `index.html`.
+To add a new project: copy one of the files in `projects/` as a starting template, update the meta info and sections, add image(s) to `assets/img/`, and add a matching project card to the `#projects` grid in `index.html` — **at the top of the grid**, not the bottom (see Conventions below).
+
+## Conventions
+
+- **Newest goes on top.** Any time a new project, research write-up, or training is added, it goes at the *top* of its list/grid (`#projects` in `index.html`, the featured section in `research.html`, the featured section in `trainings.html`) — not appended at the bottom. Clients should see the most recent work first without scrolling.
 
 ## Known follow-ups
 
