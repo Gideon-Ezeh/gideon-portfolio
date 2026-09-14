@@ -2,6 +2,24 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-09-14 (latest) — Added "The Stickiness Cliff" SQL case study as new top project
+
+**Why:** Gideon completed a new SQL/Python product-analytics case study (a take-home-style investigation rebuilding a habit-tracking app's DAU/MAU stickiness metric from raw events) and supplied the full write-up (`pocketpath-stickiness-case-study.md`), the SQL script, and the raw `events.csv`/`users.csv`. Per the standing "newest on top" convention, it goes first in the `#projects` grid.
+
+**Added `projects/pocketpath-stickiness-cliff.html`:** built directly from the user's own write-up (paraphrased into the site's voice, all figures kept exact — no invented numbers). Sections: The Brief, a 3-stat "what the headline number hid" grid, The Investigation (with an embedded, real SQL snippet showing the recursive-CTE calendar spine + rolling-28-day-MAU self-join — SQL Server has no native `COUNT(DISTINCT...)` window function), a findings table (All vs External stickiness by week), the unrelated iOS double-logging bug, and the verdict/recommendation. No Medium link for this one (not published externally) — CTA instead offers the full `.sql` script as a direct download.
+
+**New assets:**
+- `assets/img/pocketpath-stickiness-chart.png` — a slope chart (35.0%→25.9% for "All" vs flat 28.5% for "External") generated with matplotlib, styled to the site's own Auros palette (`--color-lavender` / `--color-abyss` / cyan accent) rather than a generic default theme, so it reads as a real deliverable rather than a stock chart.
+- `assets/files/pocketpath-stickiness-investigation.sql` — the full script, hosted for direct download from the case-study page's CTA.
+
+**New CSS:** `.code-block` (dark monospace panel for embedded SQL/code) and `.data-table` (dark-themed table) added to `style.css` — reusable for future data-heavy case studies that don't have a dashboard screenshot to show instead.
+
+**Categorization:** tagged `data-categories="business time-series"` on the home card — no single category in the existing 15-item list fits a mobile-app engagement-metrics investigation exactly; these two were the closest reasonable fit (flagged for the user to adjust if they'd prefer different tags, same as done for earlier ambiguous projects).
+
+**Home page:** new project card inserted as the *first* child of `#projects .project-grid` (ahead of Zephyr Bank); "Featured projects" hero stat bumped 4 → 5.
+
+**Not published to the site:** the raw `events.csv` / `users.csv` — used only to verify the write-up's row counts (175,400 events / 5,401 users, both confirmed to match) and not hosted, consistent with not publishing raw client-style datasets.
+
 ## 2026-08-17 (latest) — Real resume hosted directly on the site
 
 **Why:** the Resume/CV button linked to a Google Drive *folder*, so clicking "Download" dropped visitors on a folder listing instead of the CV itself (flagged as a follow-up in an earlier session). Gideon sent his real CV (`.docx`) and asked for it to be hosted directly on the site instead.

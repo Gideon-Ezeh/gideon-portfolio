@@ -6,15 +6,20 @@ A static HTML/CSS/JS portfolio site for Gideon Ezeh, Data/Business Analyst. No b
 
 ```
 index.html                              Home page (hero, about, skills, projects, contact)
+research.html                           Research page (featured: Nigeria C19RM Impact Evaluation)
+trainings.html                          Trainings page (featured: FMBEP Power BI workshop)
+projects/pocketpath-stickiness-cliff.html  Case study — SQL/Python product-analytics investigation
+projects/zephyr-bank-dashboard.html     Case study — Zephyr Bank transaction health dashboard
 projects/coffee-taste-test.html         Case study — Great American Coffee Taste Test
 projects/uk-train-rides.html            Case study — UK Train Rides (National Rail)
 projects/himalayan-archives.html        Case study — The Himalayan Archives
 assets/css/style.css                    All styling (Auros-derived dark teal theme)
-assets/js/main.js                       Mobile nav, scroll effects, contact form handling
-assets/img/                             Real photo + real project thumbnails
+assets/js/main.js                       Mobile nav, scroll effects, contact form, project filter
+assets/img/                             Real photos, dashboard screenshots, and generated charts
+assets/files/                           Downloadable source files (e.g. SQL scripts) linked from case studies
 ```
 
-All content is real — pulled from the existing `GideonWebsite` HTML5 UP template and the three published Medium case studies. Nothing on this site is a placeholder.
+All content is real — pulled from the existing `GideonWebsite` HTML5 UP template, published Medium case studies, LinkedIn posts, and directly-supplied write-ups/data. Nothing on this site is a placeholder.
 
 ## Design
 

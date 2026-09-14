@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Stickiness Cliff — Case Study | Gideon Ezeh</title>
+<meta name="description" content="A habit-tracking app's DAU/MAU stickiness fell from 35% to 28% the week a release shipped. Rebuilding the metric from raw SQL events showed real user engagement never moved.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="../index.html" class="logo">Gideon Ezeh</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../research.html">Research</a></li>
+      <li><a href="../trainings.html">Trainings</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="../index.html#contact" class="btn btn-primary nav-cta">Contact Me</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#projects">Projects</a> / The Stickiness Cliff</p>
+  </div>
+
+  <header class="case-header">
+    <div class="container">
+      <span class="tag accent-tag">SQL</span><span class="tag accent-tag">Python</span><span class="tag">Product Analytics</span>
+      <h1>The Stickiness Cliff</h1>
+      <p>DAU/MAU fell from 35% to 28% the week a new release shipped, and growth paused the roadmap over an "engagement emergency." Rebuilding the metric from raw events told a different story.</p>
+      <div class="case-meta">
+        <div><span>Dataset</span><strong>7 weeks of app-open events (~175K rows, 5,401 users)</strong></div>
+        <div><span>Format</span><strong>Take-home analytics case study</strong></div>
+        <div><span>Tools</span><strong>SQL Server (T-SQL), Python/pandas</strong></div>
+        <div><span>Role</span><strong>Product Analyst</strong></div>
+      </div>
+      <div class="case-image"><img src="../assets/img/pocketpath-stickiness-chart.png" alt="Chart showing stickiness for all users dropping from 35.0% to 25.9% while external-only users stay flat at 28.5%"></div>
+    </div>
+  </header>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>The Brief</h2>
+      <p>"Stickiness — DAU over MAU — was 35% the week before release 5.2 shipped and 28% the week after. Seven points in a week. I am pausing the roadmap until we understand what 5.2 did to engagement," the growth lead wrote. Nobody had rebuilt the number from the raw events — the dashboard figure was being taken at face value.</p>
+      <p>I was given seven weeks of <code>app_open</code> events and a user dimension table for Pocketpath, a habit-tracking app, and asked to rebuild stickiness for the week before and after the release, explain the drop, and decide whether it was actually an emergency. Three things were flagged going in:</p>
+      <ul>
+        <li>Some accounts in the user table are internal QA automation (<code>is_internal</code>) — nobody had checked whether the dashboard excludes them.</li>
+        <li>An iOS double-logging bug was fixed in a later release, but engineering was vague about when it started.</li>
+        <li>Release 5.2 also changed where the QA fleet's traffic points, from production to staging.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>What the headline number hid</h2>
+      <div class="results-grid">
+        <div class="result-stat"><div class="num">35%→28%</div><div class="label">reported stickiness drop that paused the product roadmap</div></div>
+        <div class="result-stat"><div class="num">0pp</div><div class="label">change in stickiness among real (external) users — flat both weeks</div></div>
+        <div class="result-stat"><div class="num">~400</div><div class="label">QA accounts whose traffic silently vanished from production overnight</div></div>
+      </div>
+      <p style="margin-top:28px;">None of that was visible from the dashboard's single blended number — it only surfaced once the metric was rebuilt from raw events and segmented by account type.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>The Investigation</h2>
+      <ul>
+        <li>Rebuilt active-user-days directly from raw events, deduplicated to one row per user per UTC calendar day — which also neutralizes any double-logging at the source, since a metric built on unique user-days doesn't care how many times a duplicate event fired within a day.</li>
+        <li>Built a calendar spine with a recursive CTE to anchor a rolling-window calculation, since SQL Server has no native <code>COUNT(DISTINCT ...)</code> window function.</li>
+        <li>Computed DAU and a true rolling 28-day MAU (per the brief — not calendar month) for every day in range, joined into a daily stickiness ratio.</li>
+        <li>Segmented the result three ways — All / External / Internal — so the effect of internal accounts is visible directly instead of asserted.</li>
+        <li>Separately audited for exact-duplicate event rows to characterize the double-logging bug's actual timing, since "engineering was vague about when it started" wasn't good enough to rule it out as a cause.</li>
+      </ul>
+
+      <div class="code-block">
+<pre><code><span class="comment">-- Calendar spine, to anchor the rolling window</span>
+;WITH bounds AS (
+    SELECT MIN(activity_date) AS min_dt, MAX(activity_date) AS max_dt
+    FROM daily_active_users
+),
+spine AS (
+    SELECT min_dt AS activity_date FROM bounds
+    UNION ALL
+    SELECT DATEADD(day, 1, activity_date)
+    FROM spine, bounds
+    WHERE spine.activity_date &lt; bounds.max_dt
+)
+SELECT activity_date INTO calendar FROM spine
+OPTION (MAXRECURSION 0);
+
+<span class="comment">-- Rolling 28-day MAU: no native COUNT(DISTINCT ...) window function in
+-- SQL Server, so this self-joins each calendar day against the 28 days
+-- of activity behind it.</span>
+SELECT c.activity_date, s.segment, COUNT(DISTINCT s.user_id) AS mau
+INTO daily_mau
+FROM calendar c
+JOIN dau_segmented s
+    ON s.activity_date BETWEEN DATEADD(day, -27, c.activity_date) AND c.activity_date
+GROUP BY c.activity_date, s.segment;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>What broke</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Segment</th><th>Week before (3–9 Aug)</th><th>Week after (10–16 Aug)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>All users (as the dashboard computes it)</td><td class="num">35.0%</td><td class="num">25.9%</td></tr>
+          <tr><td>External users only (real people)</td><td class="num">28.5%</td><td class="num">28.5%</td></tr>
+        </tbody>
+      </table>
+      <p>Real-user stickiness didn't move. The entire drop traces to internal QA accounts: 5.2 rerouted the QA fleet from production to staging, so roughly 400 QA accounts that had been generating ~1,800 events a day dropped to zero overnight on release day.</p>
+      <p>DAU — the numerator — lost those accounts immediately. MAU — the denominator — is a rolling 28-day window, and those same accounts had been active every day up to the cutover, so they stayed counted in MAU for weeks afterward, decaying only as the window slid past them. Numerator craters instantly, denominator barely moves in the short term: a manufactured cliff with no connection to actual user behavior.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>A second bug, unrelated</h2>
+      <p>The duplicate-event audit surfaced roughly 14,000 exact-duplicate iOS event rows — but concentrated from 17 August onward, a week after the release, not at the release itself. It doesn't affect the before/after comparison in question, but it would silently inflate any metric built on raw event counts rather than deduplicated user-days (opens per user, session counts) for that later window.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container">
+      <h2>The verdict</h2>
+      <p><strong>Not an emergency.</strong> Two concrete fixes:</p>
+      <ul>
+        <li>Exclude <code>is_internal = 1</code> from the stickiness dashboard permanently, and re-baseline the historical series — this exact class of false alarm will recur every time QA's traffic footprint shifts.</li>
+        <li>Get a firm start date for the iOS double-logging bug from engineering and confirm the fix actually landed, since any event-count-based metric covering late August is currently unreliable.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="case-cta">
+      <h2>Want to see the full SQL?</h2>
+      <p>The complete script — diagnostic query, deduplicated daily-active-users build, calendar spine, three-way segmentation, and the rolling-MAU join — is written to be re-run end to end.</p>
+      <div class="case-cta-actions">
+        <a href="../assets/files/pocketpath-stickiness-investigation.sql" class="btn btn-primary" download>Download the SQL Script</a>
+        <a href="../index.html#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 Gideon Ezeh. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://x.com/gideon_mighty" target="_blank" rel="noopener" aria-label="Twitter / X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-6.6L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.1L18.9 2Zm-1.2 18h1.7L6.4 4h-1.8l13.1 16Z"/></svg>
+      </a>
+      <a href="https://web.facebook.com/KOLOURED" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@GideonEzeh" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2c-.3-.9-1-1.6-1.9-1.9C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.7.4c-.9.3-1.6 1-1.9 1.9C1 8.5 1 12 1 12s0 3.5.4 5.2c.3.9 1 1.6 1.9 1.9 1.8.4 8.7.4 8.7.4s6.9 0 8.7-.4c.9-.3 1.6-1 1.9-1.9.4-1.7.4-5.2.4-5.2Zm-13.5 3.3V8.7l6 3.3-6 3.3Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/gideon-ezeh" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.4H3.3V21H6.9V8.4ZM5.1 3a2.1 2.1 0 1 0 0 4.2A2.1 2.1 0 0 0 5.1 3ZM21 21v-7c0-3.4-1.8-5-4.3-5-2 0-2.9 1.1-3.3 1.9V8.4H10v12.6h3.4v-6.6c0-1.7 1-2.5 2.2-2.5 1.1 0 1.9.7 1.9 2.5V21H21Z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
