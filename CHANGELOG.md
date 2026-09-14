@@ -2,6 +2,12 @@
 
 A running log of what's been built/changed on this site. Keep this updated when you (or Claude) make changes, so future sessions know what's already been done and why.
 
+## 2026-09-14 (later) — Restyled the Stickiness Cliff chart: white card, tells the story
+
+**Why:** the first version of `pocketpath-stickiness-chart.png` used the site's own dark-green palette as its background, which just blended into the dark page instead of standing out. Gideon asked for a white background (to read as a contrasting card against the site's green, the same way the Zephyr Bank dashboard screenshots pop against it), clearer labeling, and for the chart to carry the narrative on its own rather than just plot two lines.
+
+**Changed:** regenerated `assets/img/pocketpath-stickiness-chart.png` (same matplotlib script, in the scratchpad, not committed) with: white background; a title + subtitle baked into the image itself ("The Stickiness Cliff" / "Real user engagement never moved — internal QA traffic did"); a shaded release-date marker; a Y-axis title; and an annotation box explaining the actual mechanism (QA reroute → DAU craters, rolling MAU lags) directly on the chart. Colors switched to a brand-teal line for real users and an alarm-red line for the dashboard's misleading number, both readable on white — dark-theme accent colors (lavender/cyan) don't work on a light background.
+
 ## 2026-09-14 (latest) — Added "The Stickiness Cliff" SQL case study as new top project
 
 **Why:** Gideon completed a new SQL/Python product-analytics case study (a take-home-style investigation rebuilding a habit-tracking app's DAU/MAU stickiness metric from raw events) and supplied the full write-up (`pocketpath-stickiness-case-study.md`), the SQL script, and the raw `events.csv`/`users.csv`. Per the standing "newest on top" convention, it goes first in the `#projects` grid.
